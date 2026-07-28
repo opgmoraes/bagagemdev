@@ -30,6 +30,14 @@ jobs:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
         run: node scripts/build-firebase-config.js
 
+      - name: Remover .gitignore antes de publicar
+        # O .gitignore protege firebase-config.js no repositório principal (correto,
+        # continua assim). Mas a Action de publicação também usa Git por baixo dos
+        # panos e respeitaria esse .gitignore, pulando o arquivo que acabamos de gerar
+        # no passo anterior. Removendo o .gitignore só nesta cópia temporária que vai
+        # pro GitHub Pages, o firebase-config.js gerado consegue ser publicado.
+        run: rm -f .gitignore
+
       - name: Publicar no GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
