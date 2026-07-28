@@ -1,0 +1,62 @@
+rules_version = '2';
+
+// ============================================================
+// Regras de segurança do Firestore — Bagagem Dev
+// ============================================================
+//
+// COMO APLICAR:
+// 1. Firebase Console > Firestore Database > aba "Regras"
+// 2. Apague tudo que estiver lá e cole este arquivo inteiro
+// 3. Troque SEU_UID_AQUI (2 ocorrências abaixo) pelo seu UID real
+//    (Console > Authentication > Users > coluna "User UID")
+// 4. Clique em "Publicar"
+//
+// LÓGICA:
+// - As ÁREAS e seus roadmaps NÃO ficam no Firestore — vêm prontos
+//   direto no código do site (js/areas-preconfiguras.js), então
+//   não precisam de nenhuma regra aqui.
+// - cursos / ferramentas / vagas / produtos: qualquer visitante
+//   pode LER (é conteúdo público do site), mas só você (admin,
+//   autenticado com o UID abaixo) pode CRIAR, EDITAR ou APAGAR.
+// - leads: qualquer visitante pode CRIAR (ex: inscrição em
+//   newsletter), mas só o admin pode ler/editar/apagar a lista.
+// ============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == "SEU_UID_AQUI";
+    }
+
+    match /cursos/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /ferramentas/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /vagas/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /produtos/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /leads/{docId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Qualquer coleção não listada acima fica bloqueada por padrão
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

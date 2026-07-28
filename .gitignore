@@ -1,0 +1,23 @@
+# Variáveis de ambiente (senhas, chaves de API)
+.env.local
+.env*.local
+
+# Configuração real do Firebase — NUNCA commitar (contém suas chaves de projeto)
+# O template público fica em firebase-config.example.js
+js/firebase-config.js
+
+# Dependências (se usar npm/node)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Sistema
+Thumbs.db
