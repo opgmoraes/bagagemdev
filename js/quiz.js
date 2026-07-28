@@ -146,7 +146,7 @@ async function showResult() {
   document.getElementById("quiz-result-desc").textContent = info.desc;
 
   document.getElementById("quiz-see-area").onclick = () => {
-    location.href = `area-detalhe.html?slug=${resultSlug}`;
+    location.href = `../area-detalhe/?slug=${resultSlug}`;
   };
 
   const maxScore = ranking[0][1] || 1;

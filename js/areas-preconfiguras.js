@@ -616,5 +616,315 @@ export const AREAS_PRECONFIGURAS = [
     ],
     linguagensPopulares: ["Python", "JavaScript", "YAML"],
     termosEssenciais: ["LLM", "Prompt Engineering", "RAG", "Agent", "fine-tuning", "embeddings"]
+  },
+
+  {
+    id: "analista-sistemas",
+    nome: "Analista de Sistemas",
+    slug: "analista-sistemas",
+    descricao: "Levanta requisitos, modela processos e faz a ponte entre negócio e tecnologia. Ótima porta de entrada em TI.",
+    icone: "layout",
+    dificuldade: 3,
+    faixaSalarialMin: 3000,
+    faixaSalarialMax: 12000,
+    tempoPrimeiraVaga: "6-12 meses",
+    vagasEstimadas: 160,
+    roadmap: [
+      {
+        titulo: "Fundamentos de TI",
+        nivel: 1,
+        subtopicos: ["Lógica de Programação", "Banco de Dados", "Redes Básicas", "Ciclo de Vida de Software"]
+      },
+      {
+        titulo: "Levantamento de Requisitos",
+        nivel: 2,
+        subtopicos: ["Entrevistas com Stakeholders", "Casos de Uso", "User Stories", "Documentação Funcional"]
+      },
+      {
+        titulo: "Modelagem de Processos",
+        nivel: 2,
+        subtopicos: ["BPMN", "Fluxogramas", "Modelagem de Dados (DER)", "UML Básico"]
+      },
+      {
+        titulo: "Metodologias Ágeis",
+        nivel: 3,
+        subtopicos: ["Scrum", "Kanban", "Backlog Refinement", "Sprint Planning"]
+      },
+      {
+        titulo: "Ferramentas de Gestão",
+        nivel: 3,
+        subtopicos: ["Jira", "Trello", "Confluence", "Miro"]
+      },
+      {
+        titulo: "SQL & Integração de Sistemas",
+        nivel: 4,
+        subtopicos: ["Consultas SQL", "APIs & Integrações", "ERP/CRM Básico", "Testes de Aceitação"]
+      },
+      {
+        titulo: "Análise de Negócio",
+        nivel: 4,
+        subtopicos: ["Indicadores (KPIs)", "Análise de Impacto", "Priorização", "Comunicação com Stakeholders"]
+      },
+      {
+        titulo: "Especialização",
+        nivel: 5,
+        subtopicos: ["Analista de Requisitos Sênior", "Business Analyst", "Product Owner", "Arquitetura de Negócio"]
+      }
+    ],
+    faculdadesRelacionadas: [
+      { curso: "Análise e Desenvolvimento de Sistemas", tipo: "Tecnólogo", duracao: "2 anos" },
+      { curso: "Sistemas de Informação", tipo: "Bacharelado", duracao: "4 anos" },
+      { curso: "Gestão da Tecnologia da Informação", tipo: "Tecnólogo", duracao: "2 anos" },
+    ],
+    linguagensPopulares: ["SQL", "BPMN", "UML"],
+    termosEssenciais: ["requisitos", "user story", "BPMN", "stakeholder", "backlog"]
+  },
+
+  {
+    id: "analista-dados",
+    nome: "Analista de Dados",
+    slug: "analista-dados",
+    descricao: "Transforma dados brutos em relatórios e insights para tomada de decisão. Excelente porta de entrada para a área de dados.",
+    icone: "bar-chart",
+    dificuldade: 3,
+    faixaSalarialMin: 3200,
+    faixaSalarialMax: 13000,
+    tempoPrimeiraVaga: "6-12 meses",
+    vagasEstimadas: 190,
+    roadmap: [
+      {
+        titulo: "Fundamentos de Dados",
+        nivel: 1,
+        subtopicos: ["Estatística Básica", "Excel/Google Sheets Avançado", "Tipos de Dados", "Análise Exploratória"]
+      },
+      {
+        titulo: "SQL",
+        nivel: 2,
+        subtopicos: ["Queries Básicas", "Joins", "Agregações (GROUP BY)", "Subqueries", "Window Functions"]
+      },
+      {
+        titulo: "Python para Análise",
+        nivel: 2,
+        subtopicos: ["Pandas", "NumPy", "Limpeza de Dados", "Jupyter Notebooks"]
+      },
+      {
+        titulo: "Visualização de Dados",
+        nivel: 3,
+        subtopicos: ["Matplotlib/Seaborn", "Storytelling com Dados", "Dashboards", "Design de Gráficos"]
+      },
+      {
+        titulo: "Estatística Aplicada",
+        nivel: 3,
+        subtopicos: ["Testes de Hipótese", "Correlação vs Causalidade", "Distribuições", "Regressão Simples"]
+      },
+      {
+        titulo: "Ferramentas de BI",
+        nivel: 4,
+        subtopicos: ["Power BI", "Looker Studio", "Tableau Básico", "Métricas de Negócio"]
+      },
+      {
+        titulo: "Modelagem de Dados",
+        nivel: 4,
+        subtopicos: ["Data Warehouse Básico", "Modelagem Dimensional", "ETL Simples", "Qualidade de Dados"]
+      },
+      {
+        titulo: "Comunicação de Insights",
+        nivel: 5,
+        subtopicos: ["Apresentação para Stakeholders", "Relatórios Executivos", "A/B Testing", "Tomada de Decisão"]
+      }
+    ],
+    faculdadesRelacionadas: [
+      { curso: "Ciência de Dados", tipo: "Tecnólogo", duracao: "2 anos" },
+      { curso: "Estatística", tipo: "Bacharelado", duracao: "4 anos" },
+      { curso: "Sistemas de Informação", tipo: "Bacharelado", duracao: "4 anos" },
+    ],
+    linguagensPopulares: ["SQL", "Python", "Excel"],
+    termosEssenciais: ["SQL", "Excel", "dashboard", "KPI", "análise exploratória"]
+  },
+
+  {
+    id: "analista-bi",
+    nome: "Analista de BI",
+    slug: "analista-bi",
+    descricao: "Constrói dashboards, modela dados de negócio e entrega inteligência de dados (Business Intelligence) para a empresa toda.",
+    icone: "bar-chart",
+    dificuldade: 3,
+    faixaSalarialMin: 3500,
+    faixaSalarialMax: 14000,
+    tempoPrimeiraVaga: "6-12 meses",
+    vagasEstimadas: 130,
+    roadmap: [
+      {
+        titulo: "Fundamentos de BI",
+        nivel: 1,
+        subtopicos: ["O que é Business Intelligence", "KPIs & Métricas", "Excel Avançado", "Lógica de Negócio"]
+      },
+      {
+        titulo: "SQL para BI",
+        nivel: 2,
+        subtopicos: ["Queries Analíticas", "Joins & Views", "Stored Procedures Básico", "Otimização de Consultas"]
+      },
+      {
+        titulo: "Modelagem Dimensional",
+        nivel: 2,
+        subtopicos: ["Star Schema", "Snowflake Schema", "Fatos & Dimensões", "Data Warehouse"]
+      },
+      {
+        titulo: "Ferramentas de BI",
+        nivel: 3,
+        subtopicos: ["Power BI (DAX)", "Tableau", "Looker Studio", "Qlik Sense"]
+      },
+      {
+        titulo: "ETL & Integração",
+        nivel: 3,
+        subtopicos: ["Power Query", "Pipelines de Dados", "Fontes Múltiplas", "Agendamento de Atualizações"]
+      },
+      {
+        titulo: "DAX & Fórmulas Avançadas",
+        nivel: 4,
+        subtopicos: ["Medidas DAX", "Colunas Calculadas", "Time Intelligence", "Contexto de Filtro"]
+      },
+      {
+        titulo: "Design de Dashboards",
+        nivel: 4,
+        subtopicos: ["UX para Dados", "Storytelling Visual", "Performance de Relatórios", "Governança de Dados"]
+      },
+      {
+        titulo: "BI Estratégico",
+        nivel: 5,
+        subtopicos: ["Self-service BI", "Governança & Segurança", "Data Catalog", "Cultura Data-Driven"]
+      }
+    ],
+    faculdadesRelacionadas: [
+      { curso: "Ciência de Dados", tipo: "Tecnólogo", duracao: "2 anos" },
+      { curso: "Sistemas de Informação", tipo: "Bacharelado", duracao: "4 anos" },
+      { curso: "Business Intelligence", tipo: "Pós-graduação", duracao: "1-2 anos" },
+    ],
+    linguagensPopulares: ["DAX", "SQL", "M (Power Query)"],
+    termosEssenciais: ["Power BI", "DAX", "dashboard", "star schema", "data warehouse"]
+  },
+
+  {
+    id: "ux-ui",
+    nome: "UX/UI Design",
+    slug: "ux-ui",
+    descricao: "Projeta a experiência e a interface de produtos digitais, unindo pesquisa com usuário e design visual.",
+    icone: "layout",
+    dificuldade: 3,
+    faixaSalarialMin: 3000,
+    faixaSalarialMax: 14000,
+    tempoPrimeiraVaga: "6-12 meses",
+    vagasEstimadas: 105,
+    roadmap: [
+      {
+        titulo: "Fundamentos de Design",
+        nivel: 1,
+        subtopicos: ["Teoria das Cores", "Tipografia", "Hierarquia Visual", "Grid & Layout"]
+      },
+      {
+        titulo: "Pesquisa com Usuário (UX Research)",
+        nivel: 2,
+        subtopicos: ["Entrevistas", "Personas", "Jornada do Usuário", "Testes de Usabilidade"]
+      },
+      {
+        titulo: "Arquitetura de Informação",
+        nivel: 2,
+        subtopicos: ["Fluxos de Navegação", "Sitemap", "Card Sorting", "Wireframes"]
+      },
+      {
+        titulo: "Prototipação",
+        nivel: 3,
+        subtopicos: ["Figma", "Protótipos de Baixa e Alta Fidelidade", "Design System", "Componentes Reutilizáveis"]
+      },
+      {
+        titulo: "UI Design",
+        nivel: 3,
+        subtopicos: ["Interfaces Responsivas", "Mobile First", "Acessibilidade (a11y)", "Micro-interações"]
+      },
+      {
+        titulo: "Handoff para Desenvolvimento",
+        nivel: 4,
+        subtopicos: ["Especificações Técnicas", "Design Tokens", "Colaboração com Devs", "Ferramentas (Zeplin, Figma Dev Mode)"]
+      },
+      {
+        titulo: "Testes & Iteração",
+        nivel: 4,
+        subtopicos: ["A/B Testing", "Análise de Métricas", "Feedback Loops", "Design Thinking"]
+      },
+      {
+        titulo: "Portfólio & Especialização",
+        nivel: 5,
+        subtopicos: ["Case Studies", "Design Systems Avançado", "Product Design", "Liderança de Design"]
+      }
+    ],
+    faculdadesRelacionadas: [
+      { curso: "Design Digital", tipo: "Tecnólogo", duracao: "2 anos" },
+      { curso: "Design Gráfico", tipo: "Bacharelado", duracao: "4 anos" },
+      { curso: "UX Design", tipo: "Pós-graduação", duracao: "1-2 anos" },
+    ],
+    linguagensPopulares: ["Figma", "HTML/CSS Básico"],
+    termosEssenciais: ["wireframe", "protótipo", "usabilidade", "design system", "persona"]
+  },
+
+  {
+    id: "product-manager",
+    nome: "Product Manager",
+    slug: "product-manager",
+    descricao: "Define a visão e prioridades de um produto digital, conectando negócio, design e engenharia.",
+    icone: "layout",
+    dificuldade: 4,
+    faixaSalarialMin: 5000,
+    faixaSalarialMax: 20000,
+    tempoPrimeiraVaga: "12-18 meses",
+    vagasEstimadas: 90,
+    roadmap: [
+      {
+        titulo: "Fundamentos de Produto",
+        nivel: 1,
+        subtopicos: ["O que é um PM", "Product Discovery", "Problem Space vs Solution Space", "Métricas de Produto"]
+      },
+      {
+        titulo: "Pesquisa & Descoberta",
+        nivel: 2,
+        subtopicos: ["Entrevistas com Usuários", "Jobs to be Done", "Personas", "Validação de Hipóteses"]
+      },
+      {
+        titulo: "Priorização & Roadmap",
+        nivel: 2,
+        subtopicos: ["RICE/ICE Scoring", "Roadmap de Produto", "OKRs", "Backlog Management"]
+      },
+      {
+        titulo: "Metodologias Ágeis",
+        nivel: 3,
+        subtopicos: ["Scrum", "Kanban", "Sprint Planning", "Refinamento de Backlog"]
+      },
+      {
+        titulo: "Dados & Métricas",
+        nivel: 3,
+        subtopicos: ["SQL Básico", "Funis de Conversão", "A/B Testing", "Analytics (Amplitude, Mixpanel)"]
+      },
+      {
+        titulo: "Design & UX Colaboração",
+        nivel: 4,
+        subtopicos: ["Wireframes", "Design Sprints", "Handoff com Design", "Usabilidade"]
+      },
+      {
+        titulo: "Go-to-Market",
+        nivel: 4,
+        subtopicos: ["Lançamento de Features", "Pricing", "Posicionamento", "Comunicação com Stakeholders"]
+      },
+      {
+        titulo: "Liderança de Produto",
+        nivel: 5,
+        subtopicos: ["Visão de Produto", "Gestão de Time", "Estratégia de Longo Prazo", "Product-Market Fit"]
+      }
+    ],
+    faculdadesRelacionadas: [
+      { curso: "Administração", tipo: "Bacharelado", duracao: "4 anos" },
+      { curso: "Sistemas de Informação", tipo: "Bacharelado", duracao: "4 anos" },
+      { curso: "Gestão de Produtos Digitais", tipo: "Pós-graduação", duracao: "1-2 anos" },
+    ],
+    linguagensPopulares: ["SQL", "Excel"],
+    termosEssenciais: ["roadmap", "backlog", "OKR", "discovery", "product-market fit"]
   }
 ];
