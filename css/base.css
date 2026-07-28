@@ -125,9 +125,6 @@ footer a { color: var(--text-secondary); transition: color .15s ease; }
 footer a:hover { color: var(--text-primary); }
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width: 720px) {
-  .nav-links { display: none; }
-}
 @media (max-width: 520px) {
   .hero { padding: 48px 0 40px; }
   section { padding: 36px 0; }

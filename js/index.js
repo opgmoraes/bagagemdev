@@ -20,7 +20,7 @@ const AREA_ICONS = {
 
 function areaCardHTML(area) {
   return `
-    <a class="resource-card reveal" href="area-detalhe.html?slug=${area.slug}" style="display:block;">
+    <a class="resource-card reveal" href="area-detalhe/?slug=${area.slug}" style="display:block;">
       <div class="resource-cover"><svg class="icon" style="width:22px;height:22px;color:var(--text-muted);"><use href="#icon-${AREA_ICONS[area.slug] || "code"}"></use></svg></div>
       <div class="resource-body">
         <span class="resource-tag">/${area.slug}</span>
@@ -48,7 +48,7 @@ function cursoCardHTML(curso) {
 
 function produtoCardHTML(produto) {
   return `
-    <a class="resource-card reveal" href="produtos.html" style="display:block;">
+    <a class="resource-card reveal" href="produtos/" style="display:block;">
       <div class="resource-cover">${produto.capa ? `<img src="${produto.capa}" alt="">` : "/produto"}</div>
       <div class="resource-body">
         <p class="resource-title">${produto.titulo}</p>

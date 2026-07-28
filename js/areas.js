@@ -18,7 +18,7 @@ function formatarFaixa(area) {
 
 function areaCardHTML(area, i) {
   return `
-    <a class="bento-card reveal" href="area-detalhe.html?slug=${area.slug}">
+    <a class="bento-card reveal" href="../area-detalhe/?slug=${area.slug}">
       <div class="bento-top">
         <span class="bento-index">${String(i + 1).padStart(2, "0")}</span>
         <svg class="icon" style="width:20px;height:20px;color:var(--text-muted);"><use href="#icon-${AREA_ICONS[area.slug] || "code"}"></use></svg>
