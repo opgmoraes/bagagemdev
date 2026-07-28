@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos gratuitos — Bagagem Dev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" style="text-decoration:none;color:inherit;">bagagem dev</a>
+<button class="nav-toggle" aria-label="abrir menu" aria-expanded="false"><span></span></button>
+    <div class="nav-links">
+      <a href="areas.html">/áreas</a>
+      <a href="recursos.html" class="current">/recursos</a>
+      <a href="ferramentas.html">/ferramentas</a>
+      <a href="quiz.html">/quiz</a>
+      <a href="vagas.html">/vagas</a>
+      <a href="produtos.html">/produtos</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" style="padding-bottom:30px;">
+  <div class="wrap">
+    <p class="eyebrow">/recursos</p>
+    <h1 class="hero-title" style="font-size:clamp(28px,4vw,40px);">cursos gratuitos</h1>
+    <p class="hero-sub">cursos gratuitos e de universidades de ponta, organizados por área e nível.</p>
+    <input type="text" id="busca" placeholder="buscar por título..." style="max-width:360px;">
+  </div>
+</header>
+
+<section style="border-top:none; padding-top:0;">
+  <div class="wrap">
+    <p class="section-path">filtrar por área</p>
+    <div class="filter-bar" id="filtro-areas"></div>
+    <div class="card-grid" id="cursos-grid"><p class="state-msg">carregando...</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    bagagem dev — todo conteúdo essencial pra começar em TI, num lugar só.<br>
+    <a href="#">instagram</a> · <a href="#">github</a>
+  </div>
+</footer>
+
+<script src="js/icons.js"></script>
+<script src="js/nav.js"></script>
+<script type="module" src="js/recursos.js"></script>
+<a href="index.html" class="float-home-btn" title="voltar ao início" aria-label="voltar ao início"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M9 21V12h6v9"/></svg></a>
+</body>
+</html>

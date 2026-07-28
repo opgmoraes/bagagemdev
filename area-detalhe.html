@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área — Bagagem Dev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" style="text-decoration:none;color:inherit;">bagagem dev</a>
+<button class="nav-toggle" aria-label="abrir menu" aria-expanded="false"><span></span></button>
+    <div class="nav-links">
+      <a href="areas.html" class="current">/áreas</a>
+      <a href="recursos.html">/recursos</a>
+      <a href="ferramentas.html">/ferramentas</a>
+      <a href="quiz.html">/quiz</a>
+      <a href="vagas.html">/vagas</a>
+      <a href="produtos.html">/produtos</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" style="padding-bottom:20px;">
+  <div class="wrap">
+    <p class="section-path"><a href="areas.html">/áreas</a> / <span id="area-slug-crumb"></span></p>
+    <h1 class="hero-title" id="area-nome" style="font-size:clamp(28px,4vw,42px);">carregando...</h1>
+    <p class="hero-sub" id="area-descricao"></p>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <p class="stat-label">dificuldade</p>
+        <p class="stat-value" id="area-dificuldade">—</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-label">faixa salarial</p>
+        <p class="stat-value" id="area-faixa">—</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-label">até a 1ª vaga</p>
+        <p class="stat-value" id="area-tempo">—</p>
+      </div>
+    </div>
+
+    <div class="hero-ctas">
+      <a class="btn-primary" id="area-download-roadmap" href="#" target="_blank" rel="noopener">baixar roadmap</a>
+      <button class="btn-ghost" onclick="document.getElementById('area-cursos').scrollIntoView({behavior:'smooth'})">ver cursos gratuitos</button>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="section-path">/roadmap</p>
+    <h2 class="section-title">como começar</h2>
+    <div class="roadmap-list" id="area-roadmap"></div>
+  </div>
+</section>
+
+<section id="area-cursos">
+  <div class="wrap">
+    <p class="section-path">/cursos</p>
+    <h2 class="section-title">cursos gratuitos dessa área</h2>
+    <div class="card-grid" id="area-cursos-grid"><p class="state-msg">carregando...</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="section-path">/faculdades</p>
+    <h2 class="section-title">faculdades relacionadas</h2>
+    <div class="info-list" id="area-faculdades"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="section-path">/termos</p>
+    <h2 class="section-title">termos essenciais</h2>
+    <div class="chip-list" id="area-termos"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    bagagem dev — todo conteúdo essencial pra começar em TI, num lugar só.<br>
+    <a href="#">instagram</a> · <a href="#">github</a>
+  </div>
+</footer>
+
+<script src="js/icons.js"></script>
+<script src="js/nav.js"></script>
+<script type="module" src="js/area-detalhe.js"></script>
+<a href="index.html" class="float-home-btn" title="voltar ao início" aria-label="voltar ao início"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M9 21V12h6v9"/></svg></a>
+</body>
+</html>

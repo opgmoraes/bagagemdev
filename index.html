@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bagagem Dev — sua base pra entrar em TI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="brand">bagagem dev</span>
+<button class="nav-toggle" aria-label="abrir menu" aria-expanded="false"><span></span></button>
+    <div class="nav-links">
+      <a href="areas.html">/áreas</a>
+      <a href="recursos.html">/recursos</a>
+      <a href="ferramentas.html">/ferramentas</a>
+      <a href="quiz.html">/quiz</a>
+      <a href="vagas.html">/vagas</a>
+      <a href="produtos.html">/produtos</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">para quem tá começando ou perdido em TI</p>
+    <h1 class="hero-title">sua bagagem pra entrar na área de TI</h1>
+    <p class="hero-sub">cursos gratuitos, ideias de projeto pra portfólio e um quiz pra descobrir qual área combina com você — tudo reunido num lugar só.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="location.href='quiz.html'">descobrir minha área →</button>
+      <button class="btn-ghost" onclick="location.href='recursos.html'">ver recursos gratuitos</button>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-path">/áreas</p>
+        <h2 class="section-title">áreas de TI</h2>
+        <p class="section-desc">explore cada área, veja o roadmap e os cursos gratuitos indicados.</p>
+      </div>
+      <a class="section-link" href="areas.html">ver todas →</a>
+    </div>
+    <div class="card-grid" id="areas-preview"><p class="state-msg">carregando...</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-path">/recursos/cursos</p>
+        <h2 class="section-title">cursos gratuitos em destaque</h2>
+        <p class="section-desc">de programação a dados, incluindo cursos abertos de universidades como Harvard.</p>
+      </div>
+      <a class="section-link" href="recursos.html">ver todos →</a>
+    </div>
+    <div class="card-grid" id="cursos-preview"><p class="state-msg">carregando...</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="callout-box reveal">
+      <div class="availability">
+        <span class="dot"></span>
+        quiz disponível agora
+      </div>
+      <h2 class="callout-title">não sabe por onde começar?</h2>
+      <p class="callout-sub">responda algumas perguntas e descubra qual área de TI combina com você, com um roadmap básico pra seguir.</p>
+      <button class="btn-primary" onclick="location.href='quiz.html'">fazer o quiz</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-path">/produtos</p>
+        <h2 class="section-title">pra ir além do gratuito</h2>
+        <p class="section-desc">packs prontos pra acelerar seu início.</p>
+      </div>
+      <a class="section-link" href="produtos.html">ver todos →</a>
+    </div>
+    <div class="card-grid" id="produtos-preview"><p class="state-msg">carregando...</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="newsletter-box reveal">
+      <div class="newsletter-copy">
+        <p class="newsletter-title">receba a curadoria da semana</p>
+        <p class="newsletter-desc">ferramentas, cursos, podcasts e filmes pra área de TI — direto no seu e-mail.</p>
+      </div>
+      <div>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('newsletter ainda não conectada — vem na próxima etapa junto com o Firebase.');">
+          <input type="email" placeholder="seu@email.com" required>
+          <button class="btn-primary" type="submit">assinar</button>
+        </form>
+        <p class="form-note">grátis, sem spam, cancele quando quiser</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    bagagem dev — todo conteúdo essencial pra começar em TI, num lugar só.<br>
+    <a href="#">instagram</a> · <a href="#">github</a>
+  </div>
+</footer>
+
+<script src="js/icons.js"></script>
+<script src="js/nav.js"></script>
+<script type="module" src="js/index.js"></script>
+</body>
+</html>
