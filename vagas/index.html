@@ -1,124 +1,278 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light">
-<title>Vagas em TI — Bagagem Dev</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/variables.css">
-<link rel="stylesheet" href="../css/base.css">
-<link rel="stylesheet" href="../css/components.css">
-<style>
-.vagas-container { display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: start; }
-.vagas-list { display: flex; flex-direction: column; gap: 14px; }
-.vaga-card {
-  border: 2px solid #000; border-radius: 12px; padding: 18px; background: #fff;
-  box-shadow: 4px 4px 0 #000;
-  transition: all .1s ease;
-}
-.vaga-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #000; }
-.vaga-titulo { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin: 0 0 6px; }
-.vaga-empresa { font-family: var(--font-mono); font-size: 12px; color: var(--accent-purple); font-weight: 600; }
-.vaga-info { display: flex; gap: 16px; margin: 10px 0; font-size: 13px; }
-.vaga-info-item { display: flex; align-items: center; gap: 6px; }
-.vaga-linguagens { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
-.vaga-linguagem { font-family: var(--font-mono); font-size: 10px; padding: 4px 10px; border-radius: 4px; background: rgba(85, 44, 183, 0.1); color: var(--accent-purple); font-weight: 600; }
-.vaga-cta { display: flex; gap: 8px; margin-top: 12px; }
-.vaga-cta a { font-size: 12px; font-weight: 700; padding: 8px 16px; text-transform: uppercase; border: none; border-radius: 6px; cursor: pointer; transition: all .1s ease; }
-.vaga-link { background: var(--accent-blue); color: #fff; text-decoration: none; }
-.vaga-link:hover { transform: translate(-1px, -1px); box-shadow: 2px 2px 0 #000; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/png" href="../assets/icons/logo.png" />
+    <link rel="apple-touch-icon" href="../assets/icons/logo.png" />
+    <title>Vagas em TI — Bagagem Dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <style>
+      .vagas-container {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 24px;
+        align-items: start;
+      }
+      .vagas-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .vaga-card {
+        border: 2px solid #000;
+        border-radius: 12px;
+        padding: 18px;
+        background: #fff;
+        box-shadow: 4px 4px 0 #000;
+        transition: all 0.1s ease;
+      }
+      .vaga-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 #000;
+      }
+      .vaga-titulo {
+        font-family: var(--font-display);
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0 0 6px;
+      }
+      .vaga-empresa {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--accent-purple);
+        font-weight: 600;
+      }
+      .vaga-info {
+        display: flex;
+        gap: 16px;
+        margin: 10px 0;
+        font-size: 13px;
+      }
+      .vaga-info-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .vaga-linguagens {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 10px 0 0;
+      }
+      .vaga-linguagem {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        padding: 4px 10px;
+        border-radius: 4px;
+        background: rgba(85, 44, 183, 0.1);
+        color: var(--accent-purple);
+        font-weight: 600;
+      }
+      .vaga-cta {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .vaga-cta a {
+        font-size: 12px;
+        font-weight: 700;
+        padding: 8px 16px;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.1s ease;
+      }
+      .vaga-link {
+        background: var(--accent-blue);
+        color: #fff;
+        text-decoration: none;
+      }
+      .vaga-link:hover {
+        transform: translate(-1px, -1px);
+        box-shadow: 2px 2px 0 #000;
+      }
 
-.sidebar { background: var(--surface-2); border: 2px solid #000; border-radius: 12px; padding: 16px; box-shadow: 3px 3px 0 #000; }
-.sidebar-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; margin: 0 0 12px; text-transform: uppercase; }
-.sidebar-section { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 0.5px solid var(--border); }
-.sidebar-section:last-child { border-bottom: none; }
-.stat-item { font-size: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; }
-.stat-label { color: var(--text-secondary); }
-.stat-value { font-family: var(--font-display); font-weight: 700; color: var(--accent-purple); }
+      .sidebar {
+        background: var(--surface-2);
+        border: 2px solid #000;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 3px 3px 0 #000;
+      }
+      .sidebar-title {
+        font-family: var(--font-display);
+        font-size: 14px;
+        font-weight: 700;
+        margin: 0 0 12px;
+        text-transform: uppercase;
+      }
+      .sidebar-section {
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        border-bottom: 0.5px solid var(--border);
+      }
+      .sidebar-section:last-child {
+        border-bottom: none;
+      }
+      .stat-item {
+        font-size: 12px;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .stat-label {
+        color: var(--text-secondary);
+      }
+      .stat-value {
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: var(--accent-purple);
+      }
 
-@media (max-width: 980px) { .vagas-container { grid-template-columns: 1fr; } }
-</style>
-</head>
-<body>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="../" class="brand" style="text-decoration:none;color:inherit;">bagagem dev</a>
-<button class="nav-toggle" aria-label="abrir menu" aria-expanded="false"><span></span></button>
-    <div class="nav-links">
-      <a href="../areas/">/áreas</a>
-      <a href="../recursos/">/recursos</a>
-      <a href="../ferramentas/">/ferramentas</a>
-      <a href="../quiz/">/quiz</a>
-      <a href="../vagas/" class="current">/vagas</a>
-      <a href="../produtos/">/produtos</a>
-    </div>
-  </div>
-</nav>
-
-<header class="hero" style="padding-bottom:30px;">
-  <div class="wrap">
-    <p class="eyebrow">/vagas</p>
-    <h1 class="hero-title" style="font-size:clamp(28px,4vw,40px);">vagas em TI</h1>
-    <p class="hero-sub">oportunidades recentes do mercado — de startups a grandes empresas. Filtradas por área e linguagem.</p>
-    <input type="text" id="busca-vagas" placeholder="buscar por empresa, título, linguagem..." style="max-width:100%; margin-top:16px;">
-  </div>
-</header>
-
-<section style="border-top:none; padding-top:0;">
-  <div class="wrap">
-    <div class="vagas-container">
-      <div>
-        <p class="section-path">filtrar por área</p>
-        <div class="filter-bar" id="filtro-areas-vagas" style="margin-bottom:28px;"></div>
-        <div class="vagas-list" id="vagas-lista"><p class="state-msg">carregando vagas...</p></div>
+      @media (max-width: 980px) {
+        .vagas-container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a
+          href="../"
+          class="brand"
+          style="text-decoration: none; color: inherit"
+          >bagagem dev</a
+        >
+        <button
+          class="nav-toggle"
+          aria-label="abrir menu"
+          aria-expanded="false"
+        >
+          <span></span>
+        </button>
+        <div class="nav-links">
+          <a href="../areas/">/áreas</a>
+          <a href="../recursos/">/recursos</a>
+          <a href="../ferramentas/">/ferramentas</a>
+          <a href="../quiz/">/quiz</a>
+          <a href="../vagas/" class="current">/vagas</a>
+          <a href="../produtos/">/produtos</a>
+        </div>
       </div>
-      <div class="sidebar">
-        <h3 class="sidebar-title">📊 Mercado agora</h3>
-        
-        <div class="sidebar-section">
-          <p class="sidebar-title" style="margin-bottom:10px;">💰 Salário médio</p>
-          <div class="stat-item">
-            <span class="stat-label">Geral</span>
-            <span class="stat-value" id="salario-geral">—</span>
+    </nav>
+
+    <header class="hero" style="padding-bottom: 30px">
+      <div class="wrap">
+        <p class="eyebrow">/vagas</p>
+        <h1 class="hero-title" style="font-size: clamp(28px, 4vw, 40px)">
+          vagas em TI
+        </h1>
+        <p class="hero-sub">
+          oportunidades recentes do mercado — de startups a grandes empresas.
+          Filtradas por área e linguagem.
+        </p>
+        <input
+          type="text"
+          id="busca-vagas"
+          placeholder="buscar por empresa, título, linguagem..."
+          style="max-width: 100%; margin-top: 16px"
+        />
+      </div>
+    </header>
+
+    <section style="border-top: none; padding-top: 0">
+      <div class="wrap">
+        <div class="vagas-container">
+          <div>
+            <p class="section-path">filtrar por área</p>
+            <div
+              class="filter-bar"
+              id="filtro-areas-vagas"
+              style="margin-bottom: 28px"
+            ></div>
+            <div class="vagas-list" id="vagas-lista">
+              <p class="state-msg">carregando vagas...</p>
+            </div>
           </div>
-          <div id="salarios-area"></div>
-        </div>
+          <div class="sidebar">
+            <h3 class="sidebar-title">📊 Mercado agora</h3>
 
-        <div class="sidebar-section">
-          <p class="sidebar-title" style="margin-bottom:10px;">🔧 Linguagens (TOP 5)</p>
-          <div id="linguagens-top"></div>
-        </div>
+            <div class="sidebar-section">
+              <p class="sidebar-title" style="margin-bottom: 10px">
+                💰 Salário médio
+              </p>
+              <div class="stat-item">
+                <span class="stat-label">Geral</span>
+                <span class="stat-value" id="salario-geral">—</span>
+              </div>
+              <div id="salarios-area"></div>
+            </div>
 
-        <div class="sidebar-section">
-          <p class="sidebar-title" style="margin-bottom:10px;">📍 Áreas (TOP 5)</p>
-          <div id="areas-top"></div>
-        </div>
+            <div class="sidebar-section">
+              <p class="sidebar-title" style="margin-bottom: 10px">
+                🔧 Linguagens (TOP 5)
+              </p>
+              <div id="linguagens-top"></div>
+            </div>
 
-        <div class="sidebar-section">
-          <p class="sidebar-title" style="margin-bottom:10px;">📈 Total de vagas</p>
-          <div class="stat-item">
-            <span class="stat-label">Ativas</span>
-            <span class="stat-value" id="total-vagas">0</span>
+            <div class="sidebar-section">
+              <p class="sidebar-title" style="margin-bottom: 10px">
+                📍 Áreas (TOP 5)
+              </p>
+              <div id="areas-top"></div>
+            </div>
+
+            <div class="sidebar-section">
+              <p class="sidebar-title" style="margin-bottom: 10px">
+                📈 Total de vagas
+              </p>
+              <div class="stat-item">
+                <span class="stat-label">Ativas</span>
+                <span class="stat-value" id="total-vagas">0</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <div class="wrap">
-    bagagem dev — todo conteúdo essencial pra começar em TI, num lugar só.<br>
-    <a href="#">instagram</a> · <a href="#">github</a>
-  </div>
-</footer>
+    <footer>
+      <div class="wrap">
+        bagagem dev — todo conteúdo essencial pra começar em TI, num lugar
+        só.<br />
+        <a href="#">instagram</a> · <a href="#">github</a>
+      </div>
+    </footer>
 
-<script src="../js/icons.js"></script>
-<script src="../js/nav.js"></script>
-<script type="module" src="../js/vagas.js"></script>
-<a href="../" class="float-home-btn" title="voltar ao início" aria-label="voltar ao início"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M9 21V12h6v9"/></svg></a>
-</body>
+    <script src="../js/icons.js"></script>
+    <script src="../js/nav.js"></script>
+    <script type="module" src="../js/vagas.js"></script>
+    <a
+      href="../"
+      class="float-home-btn"
+      title="voltar ao início"
+      aria-label="voltar ao início"
+      ><svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 12l9-9 9 9" />
+        <path d="M9 21V12h6v9" /></svg
+    ></a>
+  </body>
 </html>
