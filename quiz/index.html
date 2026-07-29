@@ -1,77 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light">
-<title>Quiz — qual área de TI combina com você — Bagagem Dev</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/variables.css">
-<link rel="stylesheet" href="../css/base.css">
-<link rel="stylesheet" href="../css/components.css">
-</head>
-<body>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="../" class="brand" style="text-decoration:none;color:inherit;">bagagem dev</a>
-<button class="nav-toggle" aria-label="abrir menu" aria-expanded="false"><span></span></button>
-    <div class="nav-links">
-      <a href="../areas/">/áreas</a>
-      <a href="../recursos/">/recursos</a>
-      <a href="../ferramentas/">/ferramentas</a>
-      <a href="../quiz/" class="current">/quiz</a>
-      <a href="../vagas/">/vagas</a>
-      <a href="../produtos/">/produtos</a>
-    </div>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap quiz-shell">
-
-    <!-- Tela inicial -->
-    <div id="quiz-intro">
-      <p class="eyebrow">/quiz</p>
-      <h1 class="hero-title" style="font-size:clamp(28px,4vw,38px);">qual área de TI combina com você?</h1>
-      <p class="hero-sub">algumas perguntas rápidas pra te indicar por onde começar, com roadmap incluso.</p>
-      <button class="btn-primary" id="quiz-start">começar</button>
-    </div>
-
-    <!-- Tela de perguntas -->
-    <div id="quiz-question-screen" style="display:none;">
-      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quiz-progress-fill"></div></div>
-      <p class="quiz-step-counter" id="quiz-step-counter"></p>
-      <h2 class="quiz-question" id="quiz-question-text"></h2>
-      <div class="quiz-options" id="quiz-options"></div>
-    </div>
-
-    <!-- Tela de resultado -->
-    <div id="quiz-result-screen" style="display:none;">
-      <p class="eyebrow">seu resultado</p>
-      <p class="quiz-result-area" id="quiz-result-area"></p>
-      <p class="hero-sub" id="quiz-result-desc"></p>
-      <div class="hero-ctas">
-        <button class="btn-primary" id="quiz-see-area">ver área completa e roadmap →</button>
-        <button class="btn-ghost" id="quiz-restart">refazer o quiz</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/png" href="../assets/icons/logo.png" />
+    <link rel="apple-touch-icon" href="../assets/icons/logo.png" />
+    <title>Quiz — qual área de TI combina com você — Bagagem Dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a
+          href="../"
+          class="brand"
+          style="text-decoration: none; color: inherit"
+          >bagagem dev</a
+        >
+        <button
+          class="nav-toggle"
+          aria-label="abrir menu"
+          aria-expanded="false"
+        >
+          <span></span>
+        </button>
+        <div class="nav-links">
+          <a href="../areas/">/áreas</a>
+          <a href="../recursos/">/recursos</a>
+          <a href="../ferramentas/">/ferramentas</a>
+          <a href="../quiz/" class="current">/quiz</a>
+          <a href="../vagas/">/vagas</a>
+          <a href="../produtos/">/produtos</a>
+        </div>
       </div>
-      <div class="quiz-ranking" id="quiz-ranking"></div>
-    </div>
+    </nav>
 
-  </div>
-</header>
+    <header class="hero">
+      <div class="wrap quiz-shell">
+        <!-- Tela inicial -->
+        <div id="quiz-intro">
+          <p class="eyebrow">/quiz</p>
+          <h1 class="hero-title" style="font-size: clamp(28px, 4vw, 38px)">
+            qual área de TI combina com você?
+          </h1>
+          <p class="hero-sub">
+            algumas perguntas rápidas pra te indicar por onde começar, com
+            roadmap incluso.
+          </p>
+          <button class="btn-primary" id="quiz-start">começar</button>
+        </div>
 
-<footer>
-  <div class="wrap">
-    bagagem dev — todo conteúdo essencial pra começar em TI, num lugar só.<br>
-    <a href="#">instagram</a> · <a href="#">github</a>
-  </div>
-</footer>
+        <!-- Tela de perguntas -->
+        <div id="quiz-question-screen" style="display: none">
+          <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+          </div>
+          <p class="quiz-step-counter" id="quiz-step-counter"></p>
+          <h2 class="quiz-question" id="quiz-question-text"></h2>
+          <div class="quiz-options" id="quiz-options"></div>
+        </div>
 
-<script src="../js/icons.js"></script>
-<script src="../js/nav.js"></script>
-<script type="module" src="../js/quiz.js"></script>
-<a href="../" class="float-home-btn" title="voltar ao início" aria-label="voltar ao início"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M9 21V12h6v9"/></svg></a>
-</body>
+        <!-- Tela de resultado -->
+        <div id="quiz-result-screen" style="display: none">
+          <p class="eyebrow">seu resultado</p>
+          <p class="quiz-result-area" id="quiz-result-area"></p>
+          <p class="hero-sub" id="quiz-result-desc"></p>
+          <div class="hero-ctas">
+            <button class="btn-primary" id="quiz-see-area">
+              ver área completa e roadmap →
+            </button>
+            <button class="btn-ghost" id="quiz-restart">refazer o quiz</button>
+          </div>
+          <div class="quiz-ranking" id="quiz-ranking"></div>
+        </div>
+      </div>
+    </header>
+
+    <footer>
+      <div class="wrap">
+        bagagem dev — todo conteúdo essencial pra começar em TI, num lugar
+        só.<br />
+        <a href="#">instagram</a> · <a href="#">github</a>
+      </div>
+    </footer>
+
+    <script src="../js/icons.js"></script>
+    <script src="../js/nav.js"></script>
+    <script type="module" src="../js/quiz.js"></script>
+    <a
+      href="../"
+      class="float-home-btn"
+      title="voltar ao início"
+      aria-label="voltar ao início"
+      ><svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 12l9-9 9 9" />
+        <path d="M9 21V12h6v9" /></svg
+    ></a>
+  </body>
 </html>

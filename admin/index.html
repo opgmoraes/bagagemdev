@@ -1,360 +1,723 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light">
-  <title>Admin — Bagagem Dev</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/variables.css">
-  <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="../css/components.css">
-  <link rel="stylesheet" href="../css/admin.css">
-  <style>
-    .admin-container { max-width: 1200px; margin: 0 auto; }
-    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-    .admin-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--border); flex-wrap: wrap; }
-    .admin-tab { padding: 12px 18px; border: none; background: none; font-weight: 700; cursor: pointer; border-bottom: 3px solid transparent; transition: all .15s; font-size: 13px; text-transform: uppercase; letter-spacing: .3px; color: var(--text-secondary); }
-    .admin-tab:hover { color: var(--accent-purple); }
-    .admin-tab.active { color: var(--accent-purple); border-bottom-color: var(--accent-purple); }
-    .admin-panel { display: none; }
-    .admin-panel.active { display: block; }
-    .admin-form-group { margin-bottom: 15px; }
-    .admin-form-group label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 13px; }
-    .admin-form-group input, .admin-form-group textarea, .admin-form-group select {
-      width: 100%; padding: 10px; border: 2px solid #000; border-radius: 6px; font-family: var(--font-body); font-size: 13px;
-    }
-    .admin-form-group textarea { min-height: 80px; resize: vertical; }
-    .admin-checkbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
-    .admin-checkbox-item { display: flex; align-items: center; gap: 6px; font-size: 12px; padding: 6px 10px; border: 1.5px solid var(--border); border-radius: 6px; cursor: pointer; }
-    .admin-checkbox-item input { width: auto; accent-color: var(--accent-purple); }
-    .admin-checkbox-item.checked { border-color: var(--accent-purple); background: rgba(85,44,183,.06); }
-    .admin-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
-    .admin-item {
-      border: 2px solid #000; border-radius: 10px; padding: 15px; background: #fff;
-      box-shadow: 3px 3px 0 var(--accent-purple);
-    }
-    .admin-item-title { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
-    .admin-item-meta { font-size: 12px; color: var(--text-secondary); margin-bottom: 10px; }
-    .admin-item-actions { display: flex; gap: 8px; }
-    .admin-item-actions button { flex: 1; padding: 8px; font-size: 12px; font-weight: 700; border: 2px solid #000; border-radius: 6px; cursor: pointer; transition: all .1s; }
-    .admin-item-actions button:hover { transform: translate(-1px, -1px); box-shadow: 2px 2px 0 #000; }
-    .admin-edit-btn { background: var(--accent-blue); color: #fff; }
-    .admin-delete-btn { background: var(--accent-red); color: #fff; }
-    .admin-state { padding: 20px; text-align: center; color: var(--text-muted); grid-column: 1/-1; }
-    .admin-section { margin-bottom: 30px; }
-    .admin-section-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin-bottom: 15px; }
-    .admin-form-card { border:2px solid #000; border-radius:12px; padding:20px; background:var(--surface-2); box-shadow:4px 4px 0 var(--accent-pink); }
-    .form-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:15px; }
-    .form-row-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:15px; margin-bottom:15px; }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/png" href="../assets/icons/logo.png" />
+    <link rel="apple-touch-icon" href="../assets/icons/logo.png" />
+    <title>Admin — Bagagem Dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <style>
+      .admin-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+      .admin-tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid var(--border);
+        flex-wrap: wrap;
+      }
+      .admin-tab {
+        padding: 12px 18px;
+        border: none;
+        background: none;
+        font-weight: 700;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        transition: all 0.15s;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        color: var(--text-secondary);
+      }
+      .admin-tab:hover {
+        color: var(--accent-purple);
+      }
+      .admin-tab.active {
+        color: var(--accent-purple);
+        border-bottom-color: var(--accent-purple);
+      }
+      .admin-panel {
+        display: none;
+      }
+      .admin-panel.active {
+        display: block;
+      }
+      .admin-form-group {
+        margin-bottom: 15px;
+      }
+      .admin-form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+        font-size: 13px;
+      }
+      .admin-form-group input,
+      .admin-form-group textarea,
+      .admin-form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #000;
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-size: 13px;
+      }
+      .admin-form-group textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+      .admin-checkbox-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 8px;
+      }
+      .admin-checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        padding: 6px 10px;
+        border: 1.5px solid var(--border);
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .admin-checkbox-item input {
+        width: auto;
+        accent-color: var(--accent-purple);
+      }
+      .admin-checkbox-item.checked {
+        border-color: var(--accent-purple);
+        background: rgba(85, 44, 183, 0.06);
+      }
+      .admin-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 15px;
+      }
+      .admin-item {
+        border: 2px solid #000;
+        border-radius: 10px;
+        padding: 15px;
+        background: #fff;
+        box-shadow: 3px 3px 0 var(--accent-purple);
+      }
+      .admin-item-title {
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+      .admin-item-meta {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-bottom: 10px;
+      }
+      .admin-item-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .admin-item-actions button {
+        flex: 1;
+        padding: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        border: 2px solid #000;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.1s;
+      }
+      .admin-item-actions button:hover {
+        transform: translate(-1px, -1px);
+        box-shadow: 2px 2px 0 #000;
+      }
+      .admin-edit-btn {
+        background: var(--accent-blue);
+        color: #fff;
+      }
+      .admin-delete-btn {
+        background: var(--accent-red);
+        color: #fff;
+      }
+      .admin-state {
+        padding: 20px;
+        text-align: center;
+        color: var(--text-muted);
+        grid-column: 1/-1;
+      }
+      .admin-section {
+        margin-bottom: 30px;
+      }
+      .admin-section-title {
+        font-family: var(--font-display);
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+      .admin-form-card {
+        border: 2px solid #000;
+        border-radius: 12px;
+        padding: 20px;
+        background: var(--surface-2);
+        box-shadow: 4px 4px 0 var(--accent-pink);
+      }
+      .form-row-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+      .form-row-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a
+          href="../"
+          class="brand"
+          style="text-decoration: none; color: inherit"
+          >bagagem dev
+          <span style="font-size: 11px; color: var(--accent-purple)"
+            >/admin</span
+          ></a
+        >
+        <div class="nav-links">
+          <a href="../">← voltar ao site</a>
+          <button
+            id="logout-btn"
+            style="
+              background: none;
+              border: none;
+              color: var(--accent-red);
+              cursor: pointer;
+              font-weight: 700;
+            "
+          >
+            sair
+          </button>
+        </div>
+      </div>
+    </nav>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="../" class="brand" style="text-decoration:none;color:inherit;">bagagem dev <span style="font-size:11px;color:var(--accent-purple)">/admin</span></a>
-    <div class="nav-links">
-      <a href="../">← voltar ao site</a>
-      <button id="logout-btn" style="background:none;border:none;color:var(--accent-red);cursor:pointer;font-weight:700;">sair</button>
+    <div style="display: none" id="login-screen">
+      <header class="hero">
+        <div class="wrap">
+          <h1 class="hero-title">painel administrativo</h1>
+          <p class="hero-sub">
+            gerenciador de conteúdo — cursos, ferramentas, vagas e produtos
+          </p>
+        </div>
+      </header>
+      <section>
+        <div class="wrap" style="max-width: 400px; margin: 0 auto">
+          <div
+            style="
+              border: 2px solid #000;
+              border-radius: 12px;
+              padding: 30px;
+              background: #fff;
+              box-shadow: 6px 6px 0 var(--accent-purple);
+            "
+          >
+            <p
+              style="
+                font-family: var(--font-display);
+                font-weight: 700;
+                margin-bottom: 15px;
+              "
+            >
+              Login
+            </p>
+            <div style="margin-bottom: 15px">
+              <label
+                style="
+                  display: block;
+                  font-weight: 600;
+                  margin-bottom: 5px;
+                  font-size: 13px;
+                "
+                >E-mail</label
+              >
+              <input
+                id="login-email"
+                type="email"
+                placeholder="seu@email.com"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border: 2px solid #000;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+            <div style="margin-bottom: 20px">
+              <label
+                style="
+                  display: block;
+                  font-weight: 600;
+                  margin-bottom: 5px;
+                  font-size: 13px;
+                "
+                >Senha</label
+              >
+              <input
+                id="login-password"
+                type="password"
+                placeholder="sua senha"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border: 2px solid #000;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+            <button
+              id="login-btn"
+              class="btn-primary"
+              style="width: 100%; margin-bottom: 10px"
+            >
+              entrar
+            </button>
+            <p
+              id="login-error"
+              style="color: var(--accent-red); font-size: 12px; display: none"
+            ></p>
+          </div>
+        </div>
+      </section>
     </div>
-  </div>
-</nav>
 
-<div style="display:none;" id="login-screen">
-  <header class="hero">
-    <div class="wrap">
-      <h1 class="hero-title">painel administrativo</h1>
-      <p class="hero-sub">gerenciador de conteúdo — cursos, ferramentas, vagas e produtos</p>
+    <div style="display: none" id="admin-screen">
+      <section style="padding: 30px 0">
+        <div class="wrap admin-container">
+          <div class="admin-header">
+            <div>
+              <p class="eyebrow">/gerenciador</p>
+              <h1 style="font-size: 32px">conteúdo</h1>
+            </div>
+          </div>
+
+          <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="cursos">
+              📚 Recursos Gratuitos
+            </button>
+            <button class="admin-tab" data-tab="ferramentas">
+              🛠️ Ferramentas
+            </button>
+            <button class="admin-tab" data-tab="vagas">💼 Vagas</button>
+            <button class="admin-tab" data-tab="produtos">💰 Produtos</button>
+          </div>
+
+          <!-- TAB: CURSOS / RECURSOS GRATUITOS -->
+          <div class="admin-panel active" id="panel-cursos">
+            <div class="admin-section">
+              <p class="admin-section-title">Novo Recurso Gratuito</p>
+              <div class="admin-form-card">
+                <input type="hidden" id="cursos-id" />
+                <div class="form-row-2">
+                  <div class="admin-form-group">
+                    <label>Título *</label>
+                    <input
+                      id="cursos-titulo"
+                      placeholder="ex: React Completo"
+                      required
+                    />
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Instituição *</label>
+                    <input
+                      id="cursos-instituicao"
+                      placeholder="ex: Alura, YouTube, freeCodeCamp"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="admin-form-group">
+                  <label>Descrição *</label>
+                  <textarea
+                    id="cursos-descricao"
+                    placeholder="O que o aluno aprende?"
+                    required
+                  ></textarea>
+                </div>
+                <div class="form-row-3">
+                  <div class="admin-form-group">
+                    <label>Tipo *</label>
+                    <select id="cursos-tipo" required>
+                      <option value="">Escolha...</option>
+                      <option value="free">Gratuito</option>
+                      <option value="paid">Pago</option>
+                      <option value="certificate">Com Certificado</option>
+                    </select>
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Nível *</label>
+                    <select id="cursos-nivel" required>
+                      <option value="">Escolha...</option>
+                      <option value="iniciante">Iniciante</option>
+                      <option value="intermediario">Intermediário</option>
+                      <option value="avancado">Avançado</option>
+                    </select>
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Horas *</label>
+                    <input
+                      id="cursos-horas"
+                      type="number"
+                      placeholder="ex: 40"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="admin-form-group">
+                  <label>Link do Curso *</label>
+                  <input
+                    id="cursos-link"
+                    type="url"
+                    placeholder="https://..."
+                    required
+                  />
+                </div>
+                <div class="admin-form-group">
+                  <label
+                    >Áreas relacionadas *
+                    <span style="font-weight: 400; color: var(--text-muted)"
+                      >(selecione todas que se aplicam — aparece no roadmap
+                      dessas áreas)</span
+                    ></label
+                  >
+                  <div
+                    class="admin-checkbox-grid"
+                    id="cursos-areas-checkboxes"
+                  ></div>
+                </div>
+                <div class="admin-form-actions">
+                  <button class="btn-primary" onclick="salvarCurso()">
+                    salvar recurso
+                  </button>
+                  <button class="btn-ghost" onclick="limparCurso()">
+                    limpar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-section">
+              <p class="admin-section-title">Recursos Cadastrados</p>
+              <div id="cursos-lista" class="admin-list">
+                <p class="admin-state">carregando...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB: FERRAMENTAS -->
+          <div class="admin-panel" id="panel-ferramentas">
+            <div class="admin-section">
+              <p class="admin-section-title">Nova Ferramenta</p>
+              <div class="admin-form-card">
+                <input type="hidden" id="ferramentas-id" />
+                <div class="form-row-2">
+                  <div class="admin-form-group">
+                    <label>Nome *</label>
+                    <input
+                      id="ferramentas-nome"
+                      placeholder="ex: VS Code"
+                      required
+                    />
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Categoria *</label>
+                    <input
+                      id="ferramentas-categoria"
+                      placeholder="ex: editor, terminal, design"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="admin-form-group">
+                  <label>Descrição *</label>
+                  <textarea
+                    id="ferramentas-descricao"
+                    placeholder="Pra que serve essa ferramenta?"
+                    required
+                  ></textarea>
+                </div>
+                <div class="form-row-2">
+                  <div class="admin-form-group">
+                    <label>Importância *</label>
+                    <select id="ferramentas-importancia" required>
+                      <option value="">Escolha...</option>
+                      <option value="obrigatorio">Obrigatório</option>
+                      <option value="importante">Importante</option>
+                      <option value="opcional">Opcional</option>
+                    </select>
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Link *</label>
+                    <input
+                      id="ferramentas-link"
+                      type="url"
+                      placeholder="https://..."
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="admin-form-group">
+                  <label
+                    >Áreas relacionadas
+                    <span style="font-weight: 400; color: var(--text-muted)"
+                      >(opcional)</span
+                    ></label
+                  >
+                  <div
+                    class="admin-checkbox-grid"
+                    id="ferramentas-areas-checkboxes"
+                  ></div>
+                </div>
+                <div class="admin-form-actions">
+                  <button class="btn-primary" onclick="salvarFerramenta()">
+                    salvar ferramenta
+                  </button>
+                  <button class="btn-ghost" onclick="limparFerramenta()">
+                    limpar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-section">
+              <p class="admin-section-title">Ferramentas Cadastradas</p>
+              <div id="ferramentas-lista" class="admin-list">
+                <p class="admin-state">carregando...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB: VAGAS -->
+          <div class="admin-panel" id="panel-vagas">
+            <div class="admin-section">
+              <p class="admin-section-title">Nova Vaga</p>
+              <div class="admin-form-card">
+                <input type="hidden" id="vagas-id" />
+                <div class="form-row-2">
+                  <div class="admin-form-group">
+                    <label>Título *</label>
+                    <input
+                      id="vagas-titulo"
+                      placeholder="ex: Senior React Developer"
+                      required
+                    />
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Empresa *</label>
+                    <input
+                      id="vagas-empresa"
+                      placeholder="ex: Tech Startup XYZ"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="admin-form-group">
+                    <label>Localização *</label>
+                    <input
+                      id="vagas-localizacao"
+                      placeholder="ex: São Paulo, SP (Remoto)"
+                      required
+                    />
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Tipo *</label>
+                    <select id="vagas-tipo" required>
+                      <option value="">Escolha...</option>
+                      <option value="full-time">Full-time</option>
+                      <option value="part-time">Part-time</option>
+                      <option value="freelance">Freelance</option>
+                      <option value="internship">Estágio</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="admin-form-group">
+                    <label>Salário Mín. (R$) *</label>
+                    <input
+                      id="vagas-salario-min"
+                      type="number"
+                      placeholder="ex: 5000"
+                      required
+                    />
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Salário Máx. (R$) *</label>
+                    <input
+                      id="vagas-salario-max"
+                      type="number"
+                      placeholder="ex: 15000"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="admin-form-group">
+                  <label>Descrição *</label>
+                  <textarea
+                    id="vagas-descricao"
+                    placeholder="O que a vaga oferece?"
+                    required
+                  ></textarea>
+                </div>
+                <div class="admin-form-group">
+                  <label>Requisitos *</label>
+                  <textarea
+                    id="vagas-requisitos"
+                    placeholder="Experiência necessária, habilidades"
+                    required
+                  ></textarea>
+                </div>
+                <div class="admin-form-group">
+                  <label>Linguagens (separadas por vírgula)</label>
+                  <input
+                    id="vagas-linguagens"
+                    placeholder="ex: React, JavaScript, TypeScript"
+                  />
+                </div>
+                <div class="admin-form-group">
+                  <label>Áreas relacionadas *</label>
+                  <div
+                    class="admin-checkbox-grid"
+                    id="vagas-areas-checkboxes"
+                  ></div>
+                </div>
+                <div class="admin-form-group">
+                  <label>Link da Vaga *</label>
+                  <input
+                    id="vagas-link"
+                    type="url"
+                    placeholder="https://linkedin.com/jobs/..."
+                    required
+                  />
+                </div>
+                <div class="admin-form-actions">
+                  <button class="btn-primary" onclick="salvarVaga()">
+                    salvar vaga
+                  </button>
+                  <button class="btn-ghost" onclick="limparVaga()">
+                    limpar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-section">
+              <p class="admin-section-title">Vagas Cadastradas</p>
+              <div id="vagas-lista" class="admin-list">
+                <p class="admin-state">carregando...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB: PRODUTOS -->
+          <div class="admin-panel" id="panel-produtos">
+            <div class="admin-section">
+              <p class="admin-section-title">Novo Produto</p>
+              <div class="admin-form-card">
+                <input type="hidden" id="produtos-id" />
+                <div class="admin-form-group">
+                  <label>Título *</label>
+                  <input
+                    id="produtos-titulo"
+                    placeholder="ex: Pack Completo de Frontend"
+                    required
+                  />
+                </div>
+                <div class="admin-form-group">
+                  <label>Descrição curta *</label>
+                  <textarea
+                    id="produtos-descricao"
+                    placeholder="Resumo curto (aparece na vitrine)"
+                    required
+                  ></textarea>
+                </div>
+                <div class="admin-form-group">
+                  <label>Descrição completa</label>
+                  <textarea
+                    id="produtos-descricao-completa"
+                    placeholder="Descrição detalhada (aparece na página do produto)"
+                  ></textarea>
+                </div>
+                <div class="form-row-2">
+                  <div class="admin-form-group">
+                    <label>Preço (R$) *</label>
+                    <input
+                      id="produtos-preco"
+                      type="number"
+                      step="0.01"
+                      placeholder="ex: 97.00"
+                      required
+                    />
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Link de Capa (imagem)</label>
+                    <input
+                      id="produtos-capa"
+                      type="url"
+                      placeholder="https://... (opcional)"
+                    />
+                  </div>
+                </div>
+                <div class="admin-form-group">
+                  <label>Link de Checkout (Cakto) *</label>
+                  <input
+                    id="produtos-checkout"
+                    type="url"
+                    placeholder="https://pay.cakto.com.br/..."
+                    required
+                  />
+                </div>
+                <div class="admin-form-actions">
+                  <button class="btn-primary" onclick="salvarProduto()">
+                    salvar produto
+                  </button>
+                  <button class="btn-ghost" onclick="limparProduto()">
+                    limpar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-section">
+              <p class="admin-section-title">Produtos Cadastrados</p>
+              <div id="produtos-lista" class="admin-list">
+                <p class="admin-state">carregando...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </header>
-  <section>
-    <div class="wrap" style="max-width:400px;margin:0 auto;">
-      <div style="border:2px solid #000;border-radius:12px;padding:30px;background:#fff;box-shadow:6px 6px 0 var(--accent-purple);">
-        <p style="font-family:var(--font-display);font-weight:700;margin-bottom:15px;">Login</p>
-        <div style="margin-bottom:15px;">
-          <label style="display:block;font-weight:600;margin-bottom:5px;font-size:13px;">E-mail</label>
-          <input id="login-email" type="email" placeholder="seu@email.com" style="width:100%;padding:10px;border:2px solid #000;border-radius:6px;">
-        </div>
-        <div style="margin-bottom:20px;">
-          <label style="display:block;font-weight:600;margin-bottom:5px;font-size:13px;">Senha</label>
-          <input id="login-password" type="password" placeholder="sua senha" style="width:100%;padding:10px;border:2px solid #000;border-radius:6px;">
-        </div>
-        <button id="login-btn" class="btn-primary" style="width:100%;margin-bottom:10px;">entrar</button>
-        <p id="login-error" style="color:var(--accent-red);font-size:12px;display:none;"></p>
-      </div>
-    </div>
-  </section>
-</div>
 
-<div style="display:none;" id="admin-screen">
-  <section style="padding:30px 0;">
-    <div class="wrap admin-container">
-      <div class="admin-header">
-        <div>
-          <p class="eyebrow">/gerenciador</p>
-          <h1 style="font-size:32px;">conteúdo</h1>
-        </div>
-      </div>
-
-      <div class="admin-tabs">
-        <button class="admin-tab active" data-tab="cursos">📚 Recursos Gratuitos</button>
-        <button class="admin-tab" data-tab="ferramentas">🛠️ Ferramentas</button>
-        <button class="admin-tab" data-tab="vagas">💼 Vagas</button>
-        <button class="admin-tab" data-tab="produtos">💰 Produtos</button>
-      </div>
-
-      <!-- TAB: CURSOS / RECURSOS GRATUITOS -->
-      <div class="admin-panel active" id="panel-cursos">
-        <div class="admin-section">
-          <p class="admin-section-title">Novo Recurso Gratuito</p>
-          <div class="admin-form-card">
-            <input type="hidden" id="cursos-id">
-            <div class="form-row-2">
-              <div class="admin-form-group">
-                <label>Título *</label>
-                <input id="cursos-titulo" placeholder="ex: React Completo" required>
-              </div>
-              <div class="admin-form-group">
-                <label>Instituição *</label>
-                <input id="cursos-instituicao" placeholder="ex: Alura, YouTube, freeCodeCamp" required>
-              </div>
-            </div>
-            <div class="admin-form-group">
-              <label>Descrição *</label>
-              <textarea id="cursos-descricao" placeholder="O que o aluno aprende?" required></textarea>
-            </div>
-            <div class="form-row-3">
-              <div class="admin-form-group">
-                <label>Tipo *</label>
-                <select id="cursos-tipo" required>
-                  <option value="">Escolha...</option>
-                  <option value="free">Gratuito</option>
-                  <option value="paid">Pago</option>
-                  <option value="certificate">Com Certificado</option>
-                </select>
-              </div>
-              <div class="admin-form-group">
-                <label>Nível *</label>
-                <select id="cursos-nivel" required>
-                  <option value="">Escolha...</option>
-                  <option value="iniciante">Iniciante</option>
-                  <option value="intermediario">Intermediário</option>
-                  <option value="avancado">Avançado</option>
-                </select>
-              </div>
-              <div class="admin-form-group">
-                <label>Horas *</label>
-                <input id="cursos-horas" type="number" placeholder="ex: 40" required>
-              </div>
-            </div>
-            <div class="admin-form-group">
-              <label>Link do Curso *</label>
-              <input id="cursos-link" type="url" placeholder="https://..." required>
-            </div>
-            <div class="admin-form-group">
-              <label>Áreas relacionadas * <span style="font-weight:400;color:var(--text-muted);">(selecione todas que se aplicam — aparece no roadmap dessas áreas)</span></label>
-              <div class="admin-checkbox-grid" id="cursos-areas-checkboxes"></div>
-            </div>
-            <div class="admin-form-actions">
-              <button class="btn-primary" onclick="salvarCurso()">salvar recurso</button>
-              <button class="btn-ghost" onclick="limparCurso()">limpar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="admin-section">
-          <p class="admin-section-title">Recursos Cadastrados</p>
-          <div id="cursos-lista" class="admin-list">
-            <p class="admin-state">carregando...</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB: FERRAMENTAS -->
-      <div class="admin-panel" id="panel-ferramentas">
-        <div class="admin-section">
-          <p class="admin-section-title">Nova Ferramenta</p>
-          <div class="admin-form-card">
-            <input type="hidden" id="ferramentas-id">
-            <div class="form-row-2">
-              <div class="admin-form-group">
-                <label>Nome *</label>
-                <input id="ferramentas-nome" placeholder="ex: VS Code" required>
-              </div>
-              <div class="admin-form-group">
-                <label>Categoria *</label>
-                <input id="ferramentas-categoria" placeholder="ex: editor, terminal, design" required>
-              </div>
-            </div>
-            <div class="admin-form-group">
-              <label>Descrição *</label>
-              <textarea id="ferramentas-descricao" placeholder="Pra que serve essa ferramenta?" required></textarea>
-            </div>
-            <div class="form-row-2">
-              <div class="admin-form-group">
-                <label>Importância *</label>
-                <select id="ferramentas-importancia" required>
-                  <option value="">Escolha...</option>
-                  <option value="obrigatorio">Obrigatório</option>
-                  <option value="importante">Importante</option>
-                  <option value="opcional">Opcional</option>
-                </select>
-              </div>
-              <div class="admin-form-group">
-                <label>Link *</label>
-                <input id="ferramentas-link" type="url" placeholder="https://..." required>
-              </div>
-            </div>
-            <div class="admin-form-group">
-              <label>Áreas relacionadas <span style="font-weight:400;color:var(--text-muted);">(opcional)</span></label>
-              <div class="admin-checkbox-grid" id="ferramentas-areas-checkboxes"></div>
-            </div>
-            <div class="admin-form-actions">
-              <button class="btn-primary" onclick="salvarFerramenta()">salvar ferramenta</button>
-              <button class="btn-ghost" onclick="limparFerramenta()">limpar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="admin-section">
-          <p class="admin-section-title">Ferramentas Cadastradas</p>
-          <div id="ferramentas-lista" class="admin-list">
-            <p class="admin-state">carregando...</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB: VAGAS -->
-      <div class="admin-panel" id="panel-vagas">
-        <div class="admin-section">
-          <p class="admin-section-title">Nova Vaga</p>
-          <div class="admin-form-card">
-            <input type="hidden" id="vagas-id">
-            <div class="form-row-2">
-              <div class="admin-form-group">
-                <label>Título *</label>
-                <input id="vagas-titulo" placeholder="ex: Senior React Developer" required>
-              </div>
-              <div class="admin-form-group">
-                <label>Empresa *</label>
-                <input id="vagas-empresa" placeholder="ex: Tech Startup XYZ" required>
-              </div>
-            </div>
-            <div class="form-row-2">
-              <div class="admin-form-group">
-                <label>Localização *</label>
-                <input id="vagas-localizacao" placeholder="ex: São Paulo, SP (Remoto)" required>
-              </div>
-              <div class="admin-form-group">
-                <label>Tipo *</label>
-                <select id="vagas-tipo" required>
-                  <option value="">Escolha...</option>
-                  <option value="full-time">Full-time</option>
-                  <option value="part-time">Part-time</option>
-                  <option value="freelance">Freelance</option>
-                  <option value="internship">Estágio</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-row-2">
-              <div class="admin-form-group">
-                <label>Salário Mín. (R$) *</label>
-                <input id="vagas-salario-min" type="number" placeholder="ex: 5000" required>
-              </div>
-              <div class="admin-form-group">
-                <label>Salário Máx. (R$) *</label>
-                <input id="vagas-salario-max" type="number" placeholder="ex: 15000" required>
-              </div>
-            </div>
-            <div class="admin-form-group">
-              <label>Descrição *</label>
-              <textarea id="vagas-descricao" placeholder="O que a vaga oferece?" required></textarea>
-            </div>
-            <div class="admin-form-group">
-              <label>Requisitos *</label>
-              <textarea id="vagas-requisitos" placeholder="Experiência necessária, habilidades" required></textarea>
-            </div>
-            <div class="admin-form-group">
-              <label>Linguagens (separadas por vírgula)</label>
-              <input id="vagas-linguagens" placeholder="ex: React, JavaScript, TypeScript">
-            </div>
-            <div class="admin-form-group">
-              <label>Áreas relacionadas *</label>
-              <div class="admin-checkbox-grid" id="vagas-areas-checkboxes"></div>
-            </div>
-            <div class="admin-form-group">
-              <label>Link da Vaga *</label>
-              <input id="vagas-link" type="url" placeholder="https://linkedin.com/jobs/..." required>
-            </div>
-            <div class="admin-form-actions">
-              <button class="btn-primary" onclick="salvarVaga()">salvar vaga</button>
-              <button class="btn-ghost" onclick="limparVaga()">limpar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="admin-section">
-          <p class="admin-section-title">Vagas Cadastradas</p>
-          <div id="vagas-lista" class="admin-list">
-            <p class="admin-state">carregando...</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB: PRODUTOS -->
-      <div class="admin-panel" id="panel-produtos">
-        <div class="admin-section">
-          <p class="admin-section-title">Novo Produto</p>
-          <div class="admin-form-card">
-            <input type="hidden" id="produtos-id">
-            <div class="admin-form-group">
-              <label>Título *</label>
-              <input id="produtos-titulo" placeholder="ex: Pack Completo de Frontend" required>
-            </div>
-            <div class="admin-form-group">
-              <label>Descrição curta *</label>
-              <textarea id="produtos-descricao" placeholder="Resumo curto (aparece na vitrine)" required></textarea>
-            </div>
-            <div class="admin-form-group">
-              <label>Descrição completa</label>
-              <textarea id="produtos-descricao-completa" placeholder="Descrição detalhada (aparece na página do produto)"></textarea>
-            </div>
-            <div class="form-row-2">
-              <div class="admin-form-group">
-                <label>Preço (R$) *</label>
-                <input id="produtos-preco" type="number" step="0.01" placeholder="ex: 97.00" required>
-              </div>
-              <div class="admin-form-group">
-                <label>Link de Capa (imagem)</label>
-                <input id="produtos-capa" type="url" placeholder="https://... (opcional)">
-              </div>
-            </div>
-            <div class="admin-form-group">
-              <label>Link de Checkout (Cakto) *</label>
-              <input id="produtos-checkout" type="url" placeholder="https://pay.cakto.com.br/..." required>
-            </div>
-            <div class="admin-form-actions">
-              <button class="btn-primary" onclick="salvarProduto()">salvar produto</button>
-              <button class="btn-ghost" onclick="limparProduto()">limpar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="admin-section">
-          <p class="admin-section-title">Produtos Cadastrados</p>
-          <div id="produtos-lista" class="admin-list">
-            <p class="admin-state">carregando...</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-</div>
-
-<script src="../js/icons.js"></script>
-<script type="module" src="../js/admin.js"></script>
-</body>
+    <script src="../js/icons.js"></script>
+    <script type="module" src="../js/admin.js"></script>
+  </body>
 </html>

@@ -1,128 +1,173 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light">
-<title>Bagagem Dev — sua base pra entrar em TI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/variables.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/components.css">
-</head>
-<body>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <span class="brand">bagagem dev</span>
-<button class="nav-toggle" aria-label="abrir menu" aria-expanded="false"><span></span></button>
-    <div class="nav-links">
-      <a href="areas/">/áreas</a>
-      <a href="recursos/">/recursos</a>
-      <a href="ferramentas/">/ferramentas</a>
-      <a href="quiz/">/quiz</a>
-      <a href="vagas/">/vagas</a>
-      <a href="produtos/">/produtos</a>
-    </div>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <p class="eyebrow">para quem tá começando ou perdido em TI</p>
-    <h1 class="hero-title">sua bagagem pra entrar na área de TI</h1>
-    <p class="hero-sub">cursos gratuitos, ideias de projeto pra portfólio e um quiz pra descobrir qual área combina com você — tudo reunido num lugar só.</p>
-    <div class="hero-ctas">
-      <button class="btn-primary" onclick="location.href='quiz/'">descobrir minha área →</button>
-      <button class="btn-ghost" onclick="location.href='recursos/'">ver recursos gratuitos</button>
-    </div>
-  </div>
-</header>
-
-<section>
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <p class="section-path">/áreas</p>
-        <h2 class="section-title">áreas de TI</h2>
-        <p class="section-desc">explore cada área, veja o roadmap e os cursos gratuitos indicados.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/png" href="assets/icons/logo.png" />
+    <link rel="apple-touch-icon" href="assets/icons/logo.png" />
+    <title>Bagagem Dev — sua base pra entrar em TI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <span class="brand">bagagem dev</span>
+        <button
+          class="nav-toggle"
+          aria-label="abrir menu"
+          aria-expanded="false"
+        >
+          <span></span>
+        </button>
+        <div class="nav-links">
+          <a href="areas/">/áreas</a>
+          <a href="recursos/">/recursos</a>
+          <a href="ferramentas/">/ferramentas</a>
+          <a href="quiz/">/quiz</a>
+          <a href="vagas/">/vagas</a>
+          <a href="produtos/">/produtos</a>
+        </div>
       </div>
-      <a class="section-link" href="areas/">ver todas →</a>
-    </div>
-    <div class="card-grid" id="areas-preview"><p class="state-msg">carregando...</p></div>
-  </div>
-</section>
+    </nav>
 
-<section>
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <p class="section-path">/recursos/cursos</p>
-        <h2 class="section-title">cursos gratuitos em destaque</h2>
-        <p class="section-desc">de programação a dados, incluindo cursos abertos de universidades como Harvard.</p>
+    <header class="hero">
+      <div class="wrap">
+        <p class="eyebrow">para quem tá começando ou perdido em TI</p>
+        <h1 class="hero-title">sua bagagem pra entrar na área de TI</h1>
+        <p class="hero-sub">
+          cursos gratuitos, ideias de projeto pra portfólio e um quiz pra
+          descobrir qual área combina com você — tudo reunido num lugar só.
+        </p>
+        <div class="hero-ctas">
+          <button class="btn-primary" onclick="location.href = 'quiz/'">
+            descobrir minha área →
+          </button>
+          <button class="btn-ghost" onclick="location.href = 'recursos/'">
+            ver recursos gratuitos
+          </button>
+        </div>
       </div>
-      <a class="section-link" href="recursos/">ver todos →</a>
-    </div>
-    <div class="card-grid" id="cursos-preview"><p class="state-msg">carregando...</p></div>
-  </div>
-</section>
+    </header>
 
-<section>
-  <div class="wrap">
-    <div class="callout-box reveal">
-      <div class="availability">
-        <span class="dot"></span>
-        quiz disponível agora
+    <section>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-path">/áreas</p>
+            <h2 class="section-title">áreas de TI</h2>
+            <p class="section-desc">
+              explore cada área, veja o roadmap e os cursos gratuitos indicados.
+            </p>
+          </div>
+          <a class="section-link" href="areas/">ver todas →</a>
+        </div>
+        <div class="card-grid" id="areas-preview">
+          <p class="state-msg">carregando...</p>
+        </div>
       </div>
-      <h2 class="callout-title">não sabe por onde começar?</h2>
-      <p class="callout-sub">responda algumas perguntas e descubra qual área de TI combina com você, com um roadmap básico pra seguir.</p>
-      <button class="btn-primary" onclick="location.href='quiz/'">fazer o quiz</button>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section>
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <p class="section-path">/produtos</p>
-        <h2 class="section-title">pra ir além do gratuito</h2>
-        <p class="section-desc">packs prontos pra acelerar seu início.</p>
+    <section>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-path">/recursos/cursos</p>
+            <h2 class="section-title">cursos gratuitos em destaque</h2>
+            <p class="section-desc">
+              de programação a dados, incluindo cursos abertos de universidades
+              como Harvard.
+            </p>
+          </div>
+          <a class="section-link" href="recursos/">ver todos →</a>
+        </div>
+        <div class="card-grid" id="cursos-preview">
+          <p class="state-msg">carregando...</p>
+        </div>
       </div>
-      <a class="section-link" href="produtos/">ver todos →</a>
-    </div>
-    <div class="card-grid" id="produtos-preview"><p class="state-msg">carregando...</p></div>
-  </div>
-</section>
+    </section>
 
-<section>
-  <div class="wrap">
-    <div class="newsletter-box reveal">
-      <div class="newsletter-copy">
-        <p class="newsletter-title">receba a curadoria da semana</p>
-        <p class="newsletter-desc">ferramentas, cursos, podcasts e filmes pra área de TI — direto no seu e-mail.</p>
+    <section>
+      <div class="wrap">
+        <div class="callout-box reveal">
+          <div class="availability">
+            <span class="dot"></span>
+            quiz disponível agora
+          </div>
+          <h2 class="callout-title">não sabe por onde começar?</h2>
+          <p class="callout-sub">
+            responda algumas perguntas e descubra qual área de TI combina com
+            você, com um roadmap básico pra seguir.
+          </p>
+          <button class="btn-primary" onclick="location.href = 'quiz/'">
+            fazer o quiz
+          </button>
+        </div>
       </div>
-      <div>
-        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('newsletter ainda não conectada — vem na próxima etapa junto com o Firebase.');">
-          <input type="email" placeholder="seu@email.com" required>
-          <button class="btn-primary" type="submit">assinar</button>
-        </form>
-        <p class="form-note">grátis, sem spam, cancele quando quiser</p>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-path">/produtos</p>
+            <h2 class="section-title">pra ir além do gratuito</h2>
+            <p class="section-desc">packs prontos pra acelerar seu início.</p>
+          </div>
+          <a class="section-link" href="produtos/">ver todos →</a>
+        </div>
+        <div class="card-grid" id="produtos-preview">
+          <p class="state-msg">carregando...</p>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <div class="wrap">
-    bagagem dev — todo conteúdo essencial pra começar em TI, num lugar só.<br>
-    <a href="#">instagram</a> · <a href="#">github</a>
-  </div>
-</footer>
+    <section>
+      <div class="wrap">
+        <div class="newsletter-box reveal">
+          <div class="newsletter-copy">
+            <p class="newsletter-title">receba a curadoria da semana</p>
+            <p class="newsletter-desc">
+              ferramentas, cursos, podcasts e filmes pra área de TI — direto no
+              seu e-mail.
+            </p>
+          </div>
+          <div>
+            <form
+              class="newsletter-form"
+              onsubmit="
+                event.preventDefault();
+                alert(
+                  'newsletter ainda não conectada — vem na próxima etapa junto com o Firebase.',
+                );
+              "
+            >
+              <input type="email" placeholder="seu@email.com" required />
+              <button class="btn-primary" type="submit">assinar</button>
+            </form>
+            <p class="form-note">grátis, sem spam, cancele quando quiser</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<script src="js/icons.js"></script>
-<script src="js/nav.js"></script>
-<script type="module" src="js/index.js"></script>
-</body>
+    <footer>
+      <div class="wrap">
+        bagagem dev — todo conteúdo essencial pra começar em TI, num lugar
+        só.<br />
+        <a href="#">instagram</a> · <a href="#">github</a>
+      </div>
+    </footer>
+
+    <script src="js/icons.js"></script>
+    <script src="js/nav.js"></script>
+    <script type="module" src="js/index.js"></script>
+  </body>
 </html>
