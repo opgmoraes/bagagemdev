@@ -43,13 +43,19 @@ function applyFilters() {
   const busca = document.getElementById("busca");
   const termo = busca.value.trim().toLowerCase();
 
-  // Atualiza a URL automaticamente
+  // Atualiza a URL automaticamente (busca + áreas ativas)
   const url = new URL(window.location);
 
   if (termo) {
     url.searchParams.set("q", termo);
   } else {
     url.searchParams.delete("q");
+  }
+
+  if (activeAreas.size > 0) {
+    url.searchParams.set("areas", Array.from(activeAreas).join(","));
+  } else {
+    url.searchParams.delete("areas");
   }
 
   history.replaceState({}, "", url);
@@ -106,12 +112,25 @@ async function render() {
 
   renderFilterChips();
 
-  // Lê a pesquisa da URL
+  // Lê a pesquisa e as áreas da URL
   const params = new URLSearchParams(window.location.search);
   const pesquisa = params.get("q");
+  const areasParam = params.get("areas");
 
   if (pesquisa) {
     document.getElementById("busca").value = pesquisa;
+  }
+
+  if (areasParam) {
+    areasParam.split(",").forEach((slug) => {
+      const trimmed = slug.trim();
+      if (!trimmed) return;
+      activeAreas.add(trimmed);
+      const chip = document.querySelector(
+        `.filter-chip[data-area="${trimmed}"]`,
+      );
+      if (chip) chip.classList.add("active");
+    });
   }
 
   applyFilters();
