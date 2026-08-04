@@ -21,11 +21,17 @@ function cursoCardHTML(curso) {
     <a class="resource-card reveal" href="${curso.link}" target="_blank" rel="noopener" style="display:block;">
       <div class="resource-cover">${curso.capa ? `<img src="${curso.capa}" alt="">` : "/curso"}</div>
       <div class="resource-body">
-        <div class="resource-areas">${(curso.areas || []).map((a) => `<span class="area-tag">${a}</span>`).join("")}</div>
+        <div class="resource-areas">
+          ${(curso.areas || [])
+            .map((a) => `<span class="area-tag">${a}</span>`)
+            .join("")}
+        </div>
         <p class="resource-title">${curso.titulo}</p>
         <p class="resource-desc">${curso.descricao}</p>
         <div class="resource-foot">
-          <span class="status-tag">${curso.tipo === "universidade" ? curso.instituicao : "grátis"}</span>
+          <span class="status-tag">${
+            curso.tipo === "universidade" ? curso.instituicao : "grátis"
+          }</span>
           <span class="status-tag">${curso.nivel || ""}</span>
         </div>
       </div>
@@ -34,30 +40,53 @@ function cursoCardHTML(curso) {
 }
 
 function applyFilters() {
-  const termo = document.getElementById("busca").value.trim().toLowerCase();
+  const busca = document.getElementById("busca");
+  const termo = busca.value.trim().toLowerCase();
+
+  // Atualiza a URL automaticamente
+  const url = new URL(window.location);
+
+  if (termo) {
+    url.searchParams.set("q", termo);
+  } else {
+    url.searchParams.delete("q");
+  }
+
+  history.replaceState({}, "", url);
+
   let filtrados = allCursos;
 
   if (activeAreas.size > 0) {
-    filtrados = filtrados.filter((c) => (c.areas || []).some((a) => activeAreas.has(a)));
+    filtrados = filtrados.filter((c) =>
+      (c.areas || []).some((a) => activeAreas.has(a)),
+    );
   }
+
   if (termo) {
     filtrados = filtrados.filter((c) => c.titulo.toLowerCase().includes(termo));
   }
 
   document.getElementById("cursos-grid").innerHTML =
-    filtrados.map(cursoCardHTML).join("") || '<p class="state-msg">nenhum curso encontrado com esse filtro.</p>';
+    filtrados.map(cursoCardHTML).join("") ||
+    '<p class="state-msg">nenhum curso encontrado com esse filtro.</p>';
+
   initReveal();
 }
 
 function renderFilterChips() {
   const container = document.getElementById("filtro-areas");
+
   container.innerHTML = allAreas
-    .map((a) => `<button class="filter-chip" data-area="${a.slug}">${a.nome}</button>`)
+    .map(
+      (a) =>
+        `<button class="filter-chip" data-area="${a.slug}">${a.nome}</button>`,
+    )
     .join("");
 
   container.querySelectorAll(".filter-chip").forEach((chip) => {
     chip.addEventListener("click", () => {
       const slug = chip.dataset.area;
+
       if (activeAreas.has(slug)) {
         activeAreas.delete(slug);
         chip.classList.remove("active");
@@ -65,6 +94,7 @@ function renderFilterChips() {
         activeAreas.add(slug);
         chip.classList.add("active");
       }
+
       applyFilters();
     });
   });
@@ -73,8 +103,19 @@ function renderFilterChips() {
 async function render() {
   allCursos = await fetchAll("cursos");
   allAreas = AREAS_PRECONFIGURAS;
+
   renderFilterChips();
+
+  // Lê a pesquisa da URL
+  const params = new URLSearchParams(window.location.search);
+  const pesquisa = params.get("q");
+
+  if (pesquisa) {
+    document.getElementById("busca").value = pesquisa;
+  }
+
   applyFilters();
+
   document.getElementById("busca").addEventListener("input", applyFilters);
 }
 
