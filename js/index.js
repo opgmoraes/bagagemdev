@@ -60,6 +60,10 @@ function produtoCardHTML(produto) {
 }
 
 async function render() {
+  // Revela o conteúdo estático (newsletter, quiz callout, cta final, section heads)
+  // imediatamente — não deve depender do Firebase responder.
+  initReveal();
+
   const [cursos, produtos] = await Promise.all([
     fetchAll("cursos"),
     fetchAll("produtos"),
@@ -75,6 +79,7 @@ async function render() {
   document.getElementById("produtos-preview").innerHTML =
     produtos.slice(0, 3).map(produtoCardHTML).join("") || '<p class="state-msg">nenhum produto cadastrado ainda.</p>';
 
+  // Revela os cards recém-injetados dinamicamente
   initReveal();
 }
 
