@@ -1,0 +1,249 @@
+/* Bagagem Dev — Motion System
+   Tokens de duração, easing, e animações centralizadas */
+
+:root {
+  /* DURATIONS */
+  --duration-micro: 150ms;
+  --duration-fast: 300ms;
+  --duration-standard: 500ms;
+  --duration-slow: 800ms;
+
+  /* EASING CURVES */
+  --ease-linear: linear;
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-premium: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-bounce-out: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ANIMATION STAGGER */
+  --stagger: 80ms;
+}
+
+/* ========== ENTRADA HERO ========== */
+@keyframes heroElementIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroVisualIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hero-element {
+  opacity: 0;
+  animation: heroElementIn var(--duration-slow) var(--ease-premium) forwards;
+}
+
+.hero-element.animate-1 { animation-delay: 0ms; }
+.hero-element.animate-2 { animation-delay: 150ms; }
+.hero-element.animate-3 { animation-delay: 300ms; }
+.hero-element.animate-4 { animation-delay: 450ms; }
+.hero-element.animate-5 { animation-delay: 600ms; }
+
+.hero-visual {
+  opacity: 0;
+  transform: scale(0.98);
+  animation: heroVisualIn var(--duration-slow) var(--ease-premium) forwards;
+  animation-delay: 600ms;
+}
+
+/* ========== SCROLL REVEAL ========== */
+@keyframes revealIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealImageIn {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.reveal.reveal-in {
+  animation: revealIn var(--duration-standard) var(--ease-out) forwards;
+}
+
+.reveal-image {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.reveal-image.reveal-in {
+  animation: revealImageIn var(--duration-standard) var(--ease-out) forwards;
+}
+
+/* Stagger helpers */
+.stagger-1 { animation-delay: calc(var(--stagger) * 0); }
+.stagger-2 { animation-delay: calc(var(--stagger) * 1); }
+.stagger-3 { animation-delay: calc(var(--stagger) * 2); }
+.stagger-4 { animation-delay: calc(var(--stagger) * 3); }
+.stagger-5 { animation-delay: calc(var(--stagger) * 4); }
+.stagger-6 { animation-delay: calc(var(--stagger) * 5); }
+.stagger-7 { animation-delay: calc(var(--stagger) * 6); }
+.stagger-8 { animation-delay: calc(var(--stagger) * 7); }
+
+/* ========== HOVER MICROINTERACTIONS ========== */
+.card-hover {
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.card-hover:hover {
+  transform: translate(-2px, -2px);
+}
+
+.button-hover {
+  transition:
+    all var(--duration-micro) var(--ease-out);
+}
+
+.button-hover:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
+}
+
+.button-hover:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 #000;
+}
+
+/* Arrow animation em botões */
+.btn-arrow {
+  display: inline-block;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.btn-primary:hover .btn-arrow,
+.btn-ghost:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* ========== PULSE ANIMATION ========== */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(85, 44, 183, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(85, 44, 183, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(85, 44, 183, 0);
+  }
+}
+
+.pulse-dot {
+  animation: pulse 2s infinite;
+}
+
+/* ========== ACCORDION ANIMATION ========== */
+@keyframes expandAccordion {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
+.accordion-icon {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+details[open] .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  animation: expandAccordion var(--duration-fast) var(--ease-out);
+}
+
+/* ========== FLOAT ANIMATION ========== */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ========== MARQUEE ANIMATION ========== */
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50%));
+  }
+}
+
+.marquee {
+  animation: marqueeScroll 30s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ========== ACCESSIBILITY: REDUCE MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal-image,
+  .hero-element,
+  .hero-visual,
+  .card-hover,
+  .button-hover,
+  .pulse-dot,
+  .float-animation,
+  .marquee {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
