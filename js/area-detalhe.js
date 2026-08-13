@@ -50,7 +50,7 @@ async function render() {
 
   document.title = `${area.nome} — Bagagem Dev`;
   document.getElementById("area-slug-crumb").textContent = area.slug;
-  document.getElementById("area-nome").textContent = area.nome;
+  document.getElementById("area-nome").innerHTML = `<span class="serif-accent">${area.nome}</span>`;
   document.getElementById("area-descricao").textContent = area.descricao;
   document.getElementById("area-dificuldade").textContent = area.dificuldade ? `${area.dificuldade}/5` : "—";
 
