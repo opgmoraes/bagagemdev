@@ -42,7 +42,7 @@ function cursoCardHTML(curso) {
         <p class="resource-desc">${curso.descricao}</p>
         <div class="resource-tags"><span class="status-tag">grátis</span></div>
         <div class="resource-foot">
-          <button class="resource-toggle" aria-expanded="false">ver mais ↓</button>
+          <button class="resource-toggle" aria-expanded="false"><span class="toggle-label">ver mais</span> <span class="chevron">▾</span></button>
           <a class="resource-open" href="${curso.link}" target="_blank" rel="noopener">abrir curso ↗</a>
         </div>
       </div>
@@ -73,7 +73,7 @@ function attachCardToggle(containerId) {
     const card = btn.closest(".resource-card");
     const expanded = card.classList.toggle("expanded");
     btn.setAttribute("aria-expanded", expanded ? "true" : "false");
-    btn.textContent = expanded ? "ver menos ↑" : "ver mais ↓";
+    btn.querySelector(".toggle-label").textContent = expanded ? "ver menos" : "ver mais";
   });
 }
 attachCardToggle("cursos-preview");

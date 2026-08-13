@@ -169,6 +169,7 @@ section {
   font-weight: 600;
   margin: 0 0 12px;
   letter-spacing: -0.01em;
+  text-transform: lowercase;
 }
 .section-desc {
   color: var(--text-secondary);
