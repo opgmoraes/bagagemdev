@@ -18,7 +18,7 @@ let activeAreas = new Set();
 
 function cursoCardHTML(curso) {
   return `
-    <a class="resource-card reveal" href="${curso.link}" target="_blank" rel="noopener" style="display:block;">
+    <div class="resource-card reveal">
       <div class="resource-cover">${curso.capa ? `<img src="${curso.capa}" alt="">` : "/curso"}</div>
       <div class="resource-body">
         <div class="resource-areas">
@@ -28,15 +28,33 @@ function cursoCardHTML(curso) {
         </div>
         <p class="resource-title">${curso.titulo}</p>
         <p class="resource-desc">${curso.descricao}</p>
-        <div class="resource-foot">
+        <div class="resource-tags">
           <span class="status-tag">${
             curso.tipo === "universidade" ? curso.instituicao : "grátis"
           }</span>
           <span class="status-tag">${curso.nivel || ""}</span>
         </div>
+        <div class="resource-foot">
+          <button class="resource-toggle" aria-expanded="false">ver mais ↓</button>
+          <a class="resource-open" href="${curso.link}" target="_blank" rel="noopener">abrir curso ↗</a>
+        </div>
       </div>
-    </a>
+    </div>
   `;
+}
+
+function attachCardToggle() {
+  const container = document.getElementById("cursos-grid");
+  if (!container || container.dataset.toggleBound) return;
+  container.dataset.toggleBound = "true";
+  container.addEventListener("click", (e) => {
+    const btn = e.target.closest(".resource-toggle");
+    if (!btn) return;
+    const card = btn.closest(".resource-card");
+    const expanded = card.classList.toggle("expanded");
+    btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+    btn.textContent = expanded ? "ver menos ↑" : "ver mais ↓";
+  });
 }
 
 function applyFilters() {
@@ -110,6 +128,7 @@ async function render() {
   allCursos = await fetchAll("cursos");
   allAreas = AREAS_PRECONFIGURAS;
 
+  attachCardToggle();
   renderFilterChips();
 
   // Lê a pesquisa e as áreas da URL

@@ -34,15 +34,19 @@ function areaCardHTML(area) {
 
 function cursoCardHTML(curso) {
   return `
-    <a class="resource-card reveal" href="${curso.link}" target="_blank" rel="noopener" style="display:block;">
+    <div class="resource-card reveal">
       <div class="resource-cover">${curso.capa ? `<img src="${curso.capa}" alt="">` : `/${(curso.areas || [])[0] || "curso"}`}</div>
       <div class="resource-body">
         <div class="resource-areas">${(curso.areas || []).map((a) => `<span class="area-tag">${a}</span>`).join("")}</div>
         <p class="resource-title">${curso.titulo}</p>
         <p class="resource-desc">${curso.descricao}</p>
-        <span class="status-tag">grátis</span>
+        <div class="resource-tags"><span class="status-tag">grátis</span></div>
+        <div class="resource-foot">
+          <button class="resource-toggle" aria-expanded="false">ver mais ↓</button>
+          <a class="resource-open" href="${curso.link}" target="_blank" rel="noopener">abrir curso ↗</a>
+        </div>
       </div>
-    </a>
+    </div>
   `;
 }
 
@@ -58,6 +62,21 @@ function produtoCardHTML(produto) {
     </a>
   `;
 }
+
+// Delegação de evento: funciona mesmo depois de innerHTML ser trocado.
+function attachCardToggle(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.addEventListener("click", (e) => {
+    const btn = e.target.closest(".resource-toggle");
+    if (!btn) return;
+    const card = btn.closest(".resource-card");
+    const expanded = card.classList.toggle("expanded");
+    btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+    btn.textContent = expanded ? "ver menos ↑" : "ver mais ↓";
+  });
+}
+attachCardToggle("cursos-preview");
 
 async function render() {
   // Revela o conteúdo estático (newsletter, quiz callout, cta final, section heads)
