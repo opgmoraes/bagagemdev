@@ -1,56 +1,63 @@
 // Reveal ao scroll — compartilhado entre todas as páginas.
 // Usa Intersection Observer com stagger em cards
 // Chame initReveal() depois que o conteúdo dinâmico já estiver no DOM.
+//
+// Blindado: se o IntersectionObserver não existir, ou qualquer coisa aqui
+// falhar, o conteúdo é revelado imediatamente. Uma animação de entrada
+// nunca deve deixar o site com conteúdo invisível.
+
+function revealAll(elements) {
+  elements.forEach((el) => {
+    if (el.classList.contains('card-grid') || el.classList.contains('bento-grid')) {
+      el.querySelectorAll('.resource-card, .bento-card').forEach((card) => {
+        card.classList.add('reveal-in');
+      });
+    }
+    el.classList.add('reveal-in');
+  });
+}
 
 export function initReveal() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
+  const revealElements = document.querySelectorAll(
+    '.reveal:not([data-reveal-bound]), .card-grid:not([data-reveal-bound]), .bento-grid:not([data-reveal-bound])'
+  );
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const element = entry.target;
+  if (!revealElements.length) return;
 
-        // Se for um container com múltiplos cards, fazer stagger
-        if (element.classList.contains('card-grid') || element.classList.contains('bento-grid')) {
-          const cards = element.querySelectorAll('.resource-card, .bento-card');
-          cards.forEach((card, cardIndex) => {
-            const delay = cardIndex * 80; // 80ms stagger
-            card.style.animationDelay = `${delay}ms`;
-            card.classList.add('reveal-in');
-          });
-        } else {
-          // Para elementos individuais
-          element.classList.add('reveal-in');
+  // Sem suporte a IntersectionObserver: revela tudo direto, sem animação.
+  if (typeof IntersectionObserver === 'undefined') {
+    revealElements.forEach((el) => el.setAttribute('data-reveal-bound', 'true'));
+    revealAll(revealElements);
+    return;
+  }
+
+  try {
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          revealAll([entry.target]);
+          observer.unobserve(entry.target);
         }
+      });
+    }, observerOptions);
 
-        // Remover listener após animar
-        observer.unobserve(element);
+    revealElements.forEach((el) => {
+      el.setAttribute('data-reveal-bound', 'true');
+      observer.observe(el);
+
+      // Elemento já visível no carregamento (acima da dobra)
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        revealAll([el]);
+        observer.unobserve(el);
       }
     });
-  }, observerOptions);
-
-  // Observar .reveal e .card-grid
-  const revealElements = document.querySelectorAll('.reveal:not([data-reveal-bound]), .card-grid:not([data-reveal-bound]), .bento-grid:not([data-reveal-bound])');
-  revealElements.forEach((el) => {
-    el.setAttribute('data-reveal-bound', 'true');
-    observer.observe(el);
-
-    // Check se já está em viewport (para elementos acima do fold)
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight) {
-      if (el.classList.contains('card-grid') || el.classList.contains('bento-grid')) {
-        const cards = el.querySelectorAll('.resource-card, .bento-card');
-        cards.forEach((card, idx) => {
-          card.style.animationDelay = `${idx * 80}ms`;
-          card.classList.add('reveal-in');
-        });
-      } else {
-        el.classList.add('reveal-in');
-      }
-      observer.unobserve(el);
-    }
-  });
+  } catch (err) {
+    // Qualquer erro inesperado: garante que o conteúdo apareça mesmo assim.
+    console.warn('Reveal falhou, revelando conteúdo sem animação:', err);
+    revealElements.forEach((el) => el.setAttribute('data-reveal-bound', 'true'));
+    revealAll(revealElements);
+  }
 }
